@@ -25,10 +25,24 @@ var port = 3000;
 function onRequest(request, response) {
 	
 		/*
-		 * This writes the header for the http request
+		 * This writes the header for the http request.
+		 * This lets the User know that their request was successful
+		 * (200) and that the response is plain text ("Content-Type")
 		 */
 		response.writeHead(200, {"Content-Type": "text/plain"});
+		
+		
+		/*
+		 * This is the actual content of our response. It will
+		 * display the message: "Hello World"
+		 */
 		response.write("Hello World");
+		
+		
+		/*
+		 * This ends our response. Nothing else can be sent to the client
+		 * in this request after this function is called.
+		 */
 		response.end();
 }
 
