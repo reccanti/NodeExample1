@@ -2,6 +2,9 @@
 var http = require('http');
 
 
+var myData = require("./myData.js");
+
+
 /*
  * every internet connected device has a unique IP address.
  * every device has ~65,000 "ports". These are places where
@@ -36,7 +39,9 @@ function onRequest(request, response) {
 		 * This is the actual content of our response. It will
 		 * display the message: "Hello World"
 		 */
-		response.write("Hello World");
+		console.log(myData.getMessage());
+		console.log(myData.message);
+		response.write(myData.getMessage());
 		
 		
 		/*
