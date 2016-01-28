@@ -2,7 +2,12 @@
 var http = require('http');
 
 
+// imports our data module
 var myData = require("./myData.js");
+
+
+// imports our Polygon module
+var Polygon = require("./polygon.js");
 
 
 /*
@@ -37,7 +42,8 @@ function onRequest(request, response) {
 		
 		/*
 		 * This is the actual content of our response. It will
-		 * display the message: "Hello World"
+		 * display the message: "Hello World", as described in our
+		 * "myData" module
 		 */
 		console.log(myData.getMessage());
 		console.log(myData.message);
@@ -62,3 +68,8 @@ http.createServer(onRequest).listen(port);
 
 // sanity test to make sure the program is running
 console.log("listening on port: " + port);
+
+
+// creates a polygon object and logs its height.
+var  myPolygon = new Polygon(10, 10);
+console.log(myPolygon.height);
