@@ -10,13 +10,23 @@ var myData = require("./myData.js");
 var Polygon = require("./polygon.js");
 
 
+// imports underscore from node_modules
+var _ = require("underscore");
+
+
 /*
  * every internet connected device has a unique IP address.
  * every device has ~65,000 "ports". These are places where
  * bits are input and output. You should only run one server
  * on one port. Some of these ports are reserved by the system. 
+ *
+ * This is future-proofing for Heroku. Heroku assigns the Port value on a 
+ * value called PORT in the process environment. This checks to see if there
+ * is a PORT variable assigned. If none is assigned, it checks for a NODE_PORT
+ * variable. If none of those are checked, it will assign the port value to 
+ * 3000s
  */
-var port = 3000;
+var port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 
 /*
@@ -45,8 +55,6 @@ function onRequest(request, response) {
 		 * display the message: "Hello World", as described in our
 		 * "myData" module
 		 */
-		console.log(myData.getMessage());
-		console.log(myData.message);
 		response.write(myData.getMessage());
 		
 		
@@ -64,6 +72,14 @@ function onRequest(request, response) {
  * a callback function, in this case onRequest.
  */ 
 http.createServer(onRequest).listen(port);
+
+
+/*
+ * This is used to test that underscore is working
+ */
+var myArray = [1, 2, 3, 4, 5];
+var found = _.contains(myArray, 3);
+console.log(found);
 
 
 // sanity test to make sure the program is running
